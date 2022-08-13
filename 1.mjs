@@ -24,4 +24,11 @@ function calc(a,b){
     ret['+']=a+b;
     ret['-']=a-b;
     ret['*']=a*b;
+    return ret;
 }
+
+const result = calc(2,5);
+
+console.log(result);
+console.log(resulr['*']);
+console.log(result['+']);
