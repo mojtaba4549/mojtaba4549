@@ -1,0 +1,8 @@
+{
+  "name": "app1",
+  "version": "1.0.0",
+  "main": "app1.mjs",
+  "repository": "https://github.com/mojtaba4549/mojtaba4549.git",
+  "author": "mojtaba4549 <87696557+mojtaba4549@users.noreply.github.com>",
+  "license": "MIT"
+}
