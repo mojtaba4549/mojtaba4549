@@ -43,4 +43,30 @@
 
 
 
- 
+ class car
+ {
+    model = 'car-1000';
+    #year = 1991;
+    
+    constructor(test){
+        console.log("constractor is called");
+        //console.log(test);
+        console.log(this.model);
+        console.log(this.#year);
+        console.log(this.test);
+    }
+    move(){
+        console.log("car is moving");
+    }
+    break(){
+        console.log("car is breaking");
+    }
+
+ }
+    
+let car1 = new car();
+//let car2 = new car('ali');
+
+ //console.log(car1.break());
+
+ car1.move();
