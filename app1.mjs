@@ -74,6 +74,8 @@
 
 
 import express from "express";
+import UserController from "./userController.mjs";
+
 
     const app = express();
     const port = 3000;
@@ -89,7 +91,8 @@ import express from "express";
 
         }
     })
-
+    app.get('/user',UserController.index);
+    app.get('/user/login',UserController.login);
 
     app.post('/a',async(req,res)=>{
         console.log(req);
