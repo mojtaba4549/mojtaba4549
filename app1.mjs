@@ -43,30 +43,68 @@
 
 
 
- class car
- {
-    model = 'car-1000';
-    #year = 1991;
+//  class car
+//  {
+//     model = 'car-1000';
+//     #year = 1991;
     
-    constructor(test){
-        console.log("constractor is called");
-        //console.log(test);
-        console.log(this.model);
-        console.log(this.#year);
-        console.log(this.test);
-    }
-    move(){
-        console.log("car is moving");
-    }
-    break(){
-        console.log("car is breaking");
-    }
+//     constructor(test){
+//         console.log("constractor is called");
+//         //console.log(test);
+//         console.log(this.model);
+//         console.log(this.#year);
+//         console.log(this.test);
+//     }
+//     move(){
+//         console.log("car is moving");
+//     }
+//     break(){
+//         console.log("car is breaking");
+//     }
 
- }
+//  }
     
-let car1 = new car();
-//let car2 = new car('ali');
+// let car1 = new car();
+// //let car2 = new car('ali');
 
- //console.log(car1.break());
+//  //console.log(car1.break());
 
- car1.move();
+//  car1.move();
+
+
+
+import express from "express";
+
+    const app = express();
+    const port = 3000;
+
+    app.get('/',async(req,res)=>{
+        // return res.status(200).send(`this is ${port}`);
+        try{
+            const a=10;
+            return res.send(`welcome to a is ${a}`);
+        }
+        catch(err){
+            return res.status(500).send(err.toString());
+
+        }
+    })
+
+
+    app.post('/a',async(req,res)=>{
+        console.log(req);
+        console.log(req.url);
+        console.log(req.method);
+        console.log(req.headers);
+        res.send('welcome to post');
+    })
+
+    
+
+
+
+
+
+app.listen(port,async()=>{
+
+});
