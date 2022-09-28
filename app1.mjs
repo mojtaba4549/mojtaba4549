@@ -74,25 +74,119 @@
 
 
 import express from "express";
-import UserController from "./userController.mjs";
+//import UserController from "./userController.mjs";
+import path, { resolve } from "path";
+import process, { title } from "process";
+import {input,toNumber} from "./utils.mjs";   
+import news from "./news.mjs";   
+import nunjucks from "nunjucks";
+import userController from "./userController.mjs";
+import { error } from "console";
 
 
+
+    const BASE_URL = "http://localhost:3000";
     const app = express();
     const port = 3000;
+    app.locals.BASE_URL = BASE_URL;
+    app.use(express.static('assets'));
+    // app.get('/',async(req,res)=>{
+    //     // return res.status(200).send(`this is ${port}`);
+    //     try{
+    //         const a=10;
+    //         return res.send(`welcome to a is ${a}`);
+    //     }
+    //     catch(err){
+    //         return res.status(500).send(err.toString());
 
-    app.get('/',async(req,res)=>{
-        // return res.status(200).send(`this is ${port}`);
+    //     }
+    // })
+    //console.log(path.dirname);
+
+    const templateEngine = nunjucks.configure('view',{
+        autoescape : true,
+        express : app,
+        noCache : false,
+    });
+    const rootPath = process.cwd();
+    
+    app.get('/',async(req,res) =>{
         try{
-            const a=10;
-            return res.send(`welcome to a is ${a}`);
+            const data = {
+                // "fn":"ali",
+                // "ln":"hasan",
+                // "age":100,
+                "title":"Home!",
+                "news" :news
+            };
+            //let fn = Array.isArray(req.query.fn) ? '' : req?.query?.fn;
+            // fn = fn ?? '';
+            // fn = fn.trim();
+            
+            //const fn = req?.query?.fn.trim() ?? '';
+            //const {fn} = req.query;
+            // console.log(req.query);
+            // return res.sendFile(rootPath+'/view/1.html');    
+            res.render('index.html',data);
         }
-        catch(err){
-            return res.status(500).send(err.toString());
+        catch(e){
+           return res.status(500).send(e.toString());
+        }
+    });
 
+    app.get('/result',async(req,res)=>{
+        try{
+            const fn = input(req.query.fn);
+            const ln = input(req.query.ln);
+            let html = `hi <b>${fn} ${ln}</b> `;
+            return res.send(html);
+        }
+        catch(e){
+            return res.status(500).send(e.toString());
         }
     })
-    app.get('/user',UserController.index);
-    app.get('/user/login',UserController.login);
+
+    app.get('/about-us',async(req,res)=>{
+        try{
+            return res.send('about us');
+        }
+        catch(e){
+            res.status(500).send(e.toString());    
+        }
+    })
+
+    app.get('/news/:id',async(req,res)=>{
+        try{
+            //const id = req.params.id;
+            //const title = req.params.title;
+            const id = toNumber(input(req.params.id));
+            const id2 = parseInt(id);
+            if(id2>0){
+                const newsRow = news.find((item)=>item.id === id);
+                console.log(newsRow);
+                if(newsRow){
+
+                    // res.send(`${newsRow.title}`)
+                    const data = {
+                        "news" : newsRow
+                    };
+                    res.render('news.html',data);
+                }
+                else{
+                    res.send(`${id} news not found`);
+                }
+            }
+            else{
+                res.send('error input is not valid');
+            }            
+            
+        }
+        catch(e){
+            res.status(500).send(e.toString()); 
+        }
+    })
+   // app.get('/user',UserController.index);
+   // app.get('/user/login',UserController.login);
 
     app.post('/a',async(req,res)=>{
         console.log(req);
@@ -103,10 +197,17 @@ import UserController from "./userController.mjs";
     })
 
     
+app.get('/user/login',userController.login);
+app.use(async(error,req,res,next)=>{
+    const data = {
+        "error": error,
+    }
+    return res.status(500).render('500.html');
+})
 
-
-
-
+app.use(async(req, res)=>{
+    return res.status(404).render('404.html'); 
+})
 
 app.listen(port,async()=>{
 

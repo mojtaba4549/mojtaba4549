@@ -1,22 +1,50 @@
+// import BaseControler from "./BaseController.mjs";
+
+
+// class UserController extends BaseControler{
+
+//     async index(req,res){
+//         return res.send('i am index of user');
+//     }
+//     async login(req,res){
+//         try{
+//             a=10;
+//             return res.send('i am login');
+//         }
+//         catch(err){
+//             return super.toError(res, err);
+//         }
+        
+//     }
+// }
+
+
+// export default new UserController();'
+
 import BaseControler from "./BaseController.mjs";
 
+class userController extends BaseControler
+{
+    constructor(){
+        super();
 
-class UserController extends BaseControler{
-
-    async index(req,res){
-        return res.send('i am index of user');
+    }
+    test(){
+        return "test";
     }
     async login(req,res){
         try{
-            a=10;
-            return res.send('i am login');
+            const r = this.test();
+
+            
+            return res.send("loin!!!" + r);
         }
-        catch(err){
-            return super.toError(res, err);
+        catch(e){
+
         }
-        
     }
 }
 
 
-export default new UserController();
+
+export default new userController();

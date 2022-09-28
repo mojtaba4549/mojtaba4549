@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>My Page</title>
+</head>
+<body>
+    {% extends 'layout.html' %}
+
+
+    {% block content %}
+        <h1>
+            news List: 
+           <ul>
+            {% for item in news %}
+            <li>
+                <a href="/news/{{item.id}}">
+                    {{item.title}}
+                </a>
+            </li>
+            {% endfor %}
+           </ul> 
+        </h1>
+    {% endblock %}
+
+   
+
+
+    <!-- <br> to my page!</br>-->
+    <!-- <h1>My Name Is {{fn}} - {{ln}}</h1> -->
+    <!-- <b>{{ news }}</b> -->
+    <!-- <form method="get" action="/result"> -->
+        <!-- <div> -->
+            <!-- <label for="fn">First Name:</label> -->
+            <!-- <input type="text" name="fn" id="fn"> -->
+            <!-- <label for="ln">Last Name:</label> -->
+            <!-- <input type="text" name="ln" id="ln"> -->
+
+            <!-- <input type="submit" value="send"> -->
+
+        <!-- </div> -->
+
+    <!-- </form> -->
+</body>
+</html>

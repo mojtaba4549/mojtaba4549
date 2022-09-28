@@ -4,5 +4,9 @@
   "main": "app1.mjs",
   "repository": "https://github.com/mojtaba4549/mojtaba4549.git",
   "author": "mojtaba4549 <87696557+mojtaba4549@users.noreply.github.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "auto-bind": "^5.0.1",
+    "nunjucks": "^3.2.3"
+  }
 }

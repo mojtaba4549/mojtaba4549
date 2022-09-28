@@ -1,0 +1,33 @@
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+body{
+    background-color: blanchedalmond;
+}
+
+#main{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#header{
+    height: 100px;
+    background-color: red;
+}
+#content{
+    height: 500px;
+    background-color: rgb(182, 181, 167);
+}
+
+
+#footer{
+    height: 100px;
+    background-color: aqua;
+}
+
+ul{
+    list-style: none;
+    padding: 5px;
+}
