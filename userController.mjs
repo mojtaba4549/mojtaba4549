@@ -22,7 +22,7 @@
 // export default new UserController();'
 
 import BaseControler from "./BaseController.mjs";
-
+import {input} from "./utils.mjs"
 class userController extends BaseControler
 {
     constructor(){
@@ -33,15 +33,14 @@ class userController extends BaseControler
         return "test";
     }
     async login(req,res){
-        try{
-            const r = this.test();
+        res.render("/user/login.html");
+    }
 
-            
-            return res.send("loin!!!" + r);
-        }
-        catch(e){
 
-        }
+    async postLogin(req,res){
+        const username = input(req.body.username);
+        const password = input(req.body.password);
+        res.send(`hi ${username} ${password}`);
     }
 }
 
